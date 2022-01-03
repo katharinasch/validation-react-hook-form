@@ -5,9 +5,6 @@ import { end } from "./SelectBirthYear";
 
 export const isOlderThen18Years = (date) => isBefore(startOfDay(date), end);
 
-const validate = (date) =>
-  isOlderThen18Years(date) || "You must be at least 18 years old";
-
 export const Form = () => {
   const {
     control,
@@ -23,16 +20,10 @@ export const Form = () => {
             <Controller
               control={control}
               name="birthdate"
-              rules={{ validate }}
               render={({ field: { ref, ...field } }) => (
                 <SelectBirthDate {...field} />
               )}
             />
-            {errors.birthdate && (
-              <span className="text-xs text-red-700">
-                {errors.birthdate.message}
-              </span>
-            )}
           </form>
         </div>
       </FormProvider>
