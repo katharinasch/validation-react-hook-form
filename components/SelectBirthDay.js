@@ -11,18 +11,11 @@ import {
   getYear
 } from "date-fns";
 import { format } from "date-fns/fp";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { isOlderThen18Years } from "./Form";
 
 const getDayOfMonth = format("d");
-const returnDiv = () => {
-  return (
-    <div>
-      <p>
-        Printing out text!
-      </p>
-    </div>
-  )
-}
 
 export const SelectBirthDay = ({ value, onChange }) => {
   const handleChange = (date) => onChange(set(value, { date: date.getDate() }));
@@ -32,14 +25,26 @@ export const SelectBirthDay = ({ value, onChange }) => {
     end: endOfMonth(value)
   });
 
+  const Msg = () => (
+    <div>
+      <p>You should be at least 18 years old!</p>
+      <p>Birth date has been reset.</p>
+    </div>
+  )
+  const notify = () => {
+    toast.error(<Msg />, {
+      position: toast.POSITION.TOP_RIGHT,
+      className: 'w-96 mr-48'
+    });
+  }
+
   useEffect(() => {
     if (!isOlderThen18Years(value)) {
       onChange(
-        set(new Date(), { year: getYear(value) }),
-        returnDiv()
+        set(new Date(), { year: getYear(value)}),
+        notify()
       );
     }
-    
   }, [value, onChange]);
 
   return (
@@ -84,7 +89,8 @@ export const SelectBirthDay = ({ value, onChange }) => {
             </div>
           </>
         )}
-      </Listbox>    
+      </Listbox>
+      <ToastContainer />
     </>
   );
 };

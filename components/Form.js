@@ -11,17 +11,12 @@ const years = eachYearOfInterval({ start, end }).reverse();
 
 export const isOlderThen18Years = (date) => isBefore(startOfDay(date), end);
 
-const validate = (date) =>
-  isOlderThen18Years(date) || "You must be at least 18 years old";
-
 export const Form = () => {
-
   const {
     control,
     formState: { errors }
   } = useForm({ defaultValues: { birthdate: end } });
  
-
   return (
     <>
       <FormProvider>
@@ -31,7 +26,6 @@ export const Form = () => {
             <Controller
               control={control}
               name="birthdate"
-              rules={{ validate }}
               render={({ field: { ref, ...field } }) => (
                 <div className="sm:col-span-2 grid grid-cols-3 gap-4 mb-5">
                   <div className="mt-1">

@@ -1,4 +1,10 @@
+Birth date validator made with react-hook-form. If the user birthday input indicates an age less than 18 years old, the validator would reset the birthday as of today minus 18 years. User gets notified, that the age shoul be at least 18 years and the the birthday has been reset. 
+
+Try it out by choosing any birth year different from the current year - 18. Choose birth month diferent from the current one. Then set birth year again to the maximum possible. The date will reset. You'll see the warning. 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+CSS: [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
