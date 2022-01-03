@@ -26,7 +26,7 @@ export const SelectBirthDay = ({ value, onChange }) => {
     if (!isOlderThen18Years(value)) {
       onChange(
         set(new Date(), { year: getYear(value) }),
-        "Selected Date was not older then 18 years - automatically reset to the earliest possible date"
+        "Your age is less than 18 years old. Birth date has been reset to the earliest possible"
       );
     }
   }, [value, onChange]);
