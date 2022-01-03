@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { SelectorIcon } from "@heroicons/react/solid";
 import { ListboxOption } from "./ListboxOption";
 import { getYear, setYear } from "date-fns";
 
@@ -12,7 +12,7 @@ export const SelectBirthYear = ({ years, onChange, value }) => {
       {({ open }) => (
         <>
           <Listbox.Label className="block text-sm font-medium text-gray-700 xs:text-xs">
-            Geburtsjahr
+            Year of Birth
           </Listbox.Label>
           <div className="mt-1 relative">
             <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
