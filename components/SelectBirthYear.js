@@ -1,10 +1,15 @@
-import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
+import { eachYearOfInterval, getYear, setYear, subYears } from "date-fns";
+import { Fragment } from "react";
 import { ListboxOption } from "./ListboxOption";
-import { getYear, setYear } from "date-fns";
 
-export const SelectBirthYear = ({ years, onChange, value }) => {
+const start = subYears(new Date(), 78);
+export const end = subYears(new Date(), 18);
+
+const years = eachYearOfInterval({ start, end }).reverse();
+
+export const SelectBirthYear = ({ onChange, value }) => {
   const handleChange = (date) => onChange(setYear(value, getYear(date)));
 
   return (

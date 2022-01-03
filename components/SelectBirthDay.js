@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/solid";
@@ -11,8 +10,6 @@ import {
   getYear
 } from "date-fns";
 import { format } from "date-fns/fp";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { isOlderThen18Years } from "./Form";
 
 const getDayOfMonth = format("d");
@@ -25,24 +22,11 @@ export const SelectBirthDay = ({ value, onChange }) => {
     end: endOfMonth(value)
   });
 
-  const Msg = () => (
-    <div>
-      <p>You should be at least 18 years old!</p>
-      <p>Birth date has been reset.</p>
-    </div>
-  )
-  const notify = () => {
-    toast.error(<Msg />, {
-      position: toast.POSITION.TOP_RIGHT,
-      className: 'w-96 mr-48'
-    });
-  }
-
   useEffect(() => {
     if (!isOlderThen18Years(value)) {
       onChange(
-        set(new Date(), { year: getYear(value)}),
-        notify()
+        set(new Date(), { year: getYear(value) }),
+        "Selected Date was not older then 18 years - automatically reset to the earliest possible date"
       );
     }
   }, [value, onChange]);
@@ -90,7 +74,6 @@ export const SelectBirthDay = ({ value, onChange }) => {
           </>
         )}
       </Listbox>
-      <ToastContainer />
     </>
   );
 };
